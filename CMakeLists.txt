@@ -22,3 +22,4 @@ add_executable(Isc-Shell
         SpecialInput/Left.h SpecialInput/Right.cpp
         SpecialInput/Right.h SpecialInput/BackSpace.cpp
         SpecialInput/BackSpace.h SpecialInput/KeyboardOperation.h)
+add_executable(testCode test.cpp)

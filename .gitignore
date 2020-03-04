@@ -15,3 +15,5 @@ _deps
 cmake-build-debug
 Isc-Shell
 Shell.cbp
+test.cpp
+test
