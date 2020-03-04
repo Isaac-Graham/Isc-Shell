@@ -8,6 +8,23 @@
 
 本mini project使用`gcc version 7.4.0 (Ubuntu 7.4.0-1ubuntu1~18.04.1) `，测试平台与开发平台均为`wsl Ubuntu 18.04.2 LTS`. 
 
+
+
+## 修改日志
+
+### v0.0.1 (2020-03-01 01:41:00 GMT+08:00)
+
+* 支持echo/cd两个bash的build-in command
+* 支持外部程序调用(`/bin/ls`等)
+* 实现查看Log日志
+  * 实现Log日志输入上下方向键查看最近匹配的command
+* 实现光标的左右移动
+* 支持管道 `|`
+* 支持Backspace
+* 支持重定向指令 `>>` `<<`
+
+
+
 ## 使用方法
 
 首先cd进文件夹
@@ -172,7 +189,7 @@ if (c == '\033') {
  - [ ] 更多地支持一些fork无法使用的command
  - [ ] 插件支持
  - [x] 管道的支持
- - [x] 获取上一次Isc-Shell的history
+ - [ ] 获取上一次Isc-Shell的history
  - [x] backspace
  - [x] 重定向输入输出
 
