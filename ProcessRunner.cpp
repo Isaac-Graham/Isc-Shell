@@ -15,6 +15,10 @@
 #include "Exception/PipeException.h"
 #include "Exception/FileNotFoundException.h"
 
+//void signalHandlerExitChild(int signum) {
+//    exit(signum);
+//}
+
 ProcessRunner::ProcessRunner() {}
 
 ProcessRunner::ProcessRunner(char *commands, const int length) {
@@ -54,6 +58,7 @@ int ProcessRunner::callCommand(int left, int right) {
         if ((pid = fork()) < 0) { /* failed to create a process */
             throw ForkException();
         } else if (pid == 0) { /* child process */
+            // signal(SIGINT, signalHandlerExitChild);
             if (execvp(cmd, argv) == -1) {
                 printf("Isc-Shell: command not found: %s\n", cmd);
                 exit(0);
@@ -122,7 +127,8 @@ int ProcessRunner::callCommandWithRedirection(int left, int right) {
     if (pid == -1) {
         throw ForkException();
     } else if (pid == 0) {
-        printf("\n");
+        // signal(SIGINT, signalHandlerExitChild);
+//        printf("\n");
         if (inNum == 1) {
             freopen(inFile, "r", stdin);
         }
@@ -170,6 +176,7 @@ int ProcessRunner::callCommandWithPipe(int left, int right) {
         if (pid == -1) {
             throw ForkException();
         } else if (pid == 0) {
+            // signal(SIGINT, signalHandlerExitChild);
             close(fds[0]);
             int saveOut = dup(STDOUT_FILENO);
             dup2(fds[1], STDOUT_FILENO);

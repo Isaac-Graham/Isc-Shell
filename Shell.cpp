@@ -9,18 +9,25 @@
 #include "ProcessRunner.h"
 #include "Reader.h"
 #include "Exception/InputOutOfLimitException.h"
+#include <csignal>
 
 #define MAX_CMD 512
 #define MAX_PATH 512
 #define MAX_ARGV 16
 
-void initCMD(char *line) {
+
+void initCMD(char *l) {
     for (int i = 0; i < MAX_CMD; i++) {
-        line[i] = '\0';
+        l[i] = '\0';
     }
 }
 
+void signalHandlerExitParent(int signum) {
+    printf("\r");
+}
+
 int main() {
+    signal(SIGINT, signalHandlerExitParent);
     char line[MAX_CMD];
     char path[MAX_PATH];
     Log *log_t = new Log();
