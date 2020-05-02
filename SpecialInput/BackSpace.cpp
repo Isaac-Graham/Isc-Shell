@@ -19,7 +19,9 @@ Backspace::Backspace() {
 }
 
 char *Backspace::onClick(char *&lines, Log &log, char *content, int &length, char *path) {
-    if (lines == content) {
+    if (length == 0 || lines == content) {
+        CLEAR_OUTPUT_LINE();
+        printf("\r(pid=%d)%s$ %s", getpid(), getcwd(path, MAX_PATH), content);
         return content;
     }
     int l = 0;
