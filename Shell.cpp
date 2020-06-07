@@ -15,6 +15,8 @@
 #define MAX_PATH 512
 #define MAX_ARGV 16
 
+char line[MAX_CMD];
+char path[MAX_PATH];
 
 void initCMD(char *l) {
     for (int i = 0; i < MAX_CMD; i++) {
@@ -23,13 +25,13 @@ void initCMD(char *l) {
 }
 
 void signalHandlerExitParent(int signum) {
-    printf("\r");
+    printf("\n\r");
+    printf("(pid=%d)%s$ ", getpid(), getcwd(path, MAX_PATH));
+    fflush(stdout);
 }
 
 int main() {
     signal(SIGINT, signalHandlerExitParent);
-    char line[MAX_CMD];
-    char path[MAX_PATH];
     Log *log_t = new Log();
     while (strcmp(line, "exit") != 0) {
         initCMD(line);
